@@ -104,8 +104,16 @@ mp._events.add('incomingDamage', (sourceEntity, sourcePlayer, targetEntity, weap
 		if(boneIndex === 20)
 			cDamage = cDamage/10;
 		//Применяем к игроку полученный урон
-		targetEntity.applyDamageTo(cDamage, true);
-		//Отменяем стандартное событие
-		return true;
+		targetEntity.applyDamageTo(parseInt(cDamage), true);
+		/* 
+		Узнаем сколько здоровья у игрока после урона
+        Если игрок не умер, то отменяем стандартное событие
+        Если игрок умер, то не отменяем, т.к. если отменим
+        То не сработает событие playerDeath как должно
+		*/
+		let currentHealth = mp.players.local.getHealth();
+        //Отменяем стандартное событие
+        if(currentHealth > 0) {
+            return true;
 	}
 });
