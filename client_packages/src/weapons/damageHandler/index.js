@@ -10,27 +10,27 @@ const defaultPercent = {
 mp._events.add('incomingDamage', (sourceEntity, sourcePlayer, targetEntity, weapon, boneIndex, damage) => {
 	if (targetEntity.type === 'player' && sourcePlayer && !(weapon in ignoreWeapons)) {
 
-		if (global.adminGodMode) return true;
+			if (global.adminGodMode) return true;
 
-		let max = defaultPercent.max;
-		let min = defaultPercent.min;
-    
-		if (weapon in damageWeapons) {
-			max = damageWeapons[weapon].max;
-			min = damageWeapons[weapon].min;
-		}
+			let max = defaultPercent.max;
+			let min = defaultPercent.min;
 
-		let percent = randomInt(min, max) / 100;
-		let cDamage = damage - (damage * percent);
+			if (weapon in damageWeapons) {
+					max = damageWeapons[weapon].max;
+					min = damageWeapons[weapon].min;
+			}
 
-		if (boneIndex === 20)
-			cDamage = cDamage / 10;
+			let percent = randomInt(min, max) / 100;
+			let cDamage = damage - (damage * percent);
 
-		targetEntity.applyDamageTo(parseInt(cDamage), true);
+			if (boneIndex === 20)
+					cDamage = cDamage / 10;
 
-		const currentHealth = targetEntity.getHealth();
-		if (currentHealth > 0) {
-			return true;
-		}
+			targetEntity.applyDamageTo(parseInt(cDamage), true);
+
+			const currentHealth = targetEntity.getHealth();
+			if (currentHealth > 0) {
+					return true;
+			}
 	}
 });
