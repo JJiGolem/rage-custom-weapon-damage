@@ -33,6 +33,8 @@ mp._events.add("incomingDamage", (sourceEntity, sourcePlayer, targetEntity, weap
 			customDamage /= 10;
 		}
 		
+		targetEntity.applyDamageTo(parseInt(customDamage), true);
+		
 		const currentHealth = targetEntity.getHealth();
 		if (currentHealth > 0) {
 			return true;
