@@ -1,7 +1,9 @@
 exports = {
+	// Weapons from this list will not be processed by our script.
 	ignoreWeapons: {
 		911657153: "Stun Gun",
 	},
+	// 
 	damageWeapons: {
 		3249783761: { // weaponHash
 			max: 90,
